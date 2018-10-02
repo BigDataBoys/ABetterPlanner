@@ -11,4 +11,9 @@ public class Controller {
         String a = "Hello";
         return a;
     }
+    
+    public String bye() {
+    	String b = "Adios";
+    	return b
+    }
 }

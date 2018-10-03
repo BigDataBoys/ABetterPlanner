@@ -1,5 +1,5 @@
 package com.abetterplanner.controller;
-
+import org.apache.commons.rng.RandomSource;
 
 
 public class Controller {
@@ -12,8 +12,10 @@ public class Controller {
         return a;
     }
     
-    public String bye() {
-    	String b = "Adios";
-    	return b
+    public void test() {
+    	double[] mean = {1,2}
+    	double[] cov = {{9,c}, {c, 16}}
+    	RealMatrix covariance = MaxrixUtils.createRealMatrix(cov)
+    	return covariance;
     }
 }

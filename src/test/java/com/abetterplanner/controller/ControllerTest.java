@@ -1,29 +1,19 @@
 package com.abetterplanner.controller;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-import org.junit.Assert;
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Test;
 
+public class ControllerTest {
 
-public class ControllerTest extends TestCase {
-
-    public ControllerTest(String testName){
-        super(testName);
-    }
-
-    public static Test suite(){
-        return new TestSuite(ControllerTest.class);
-    }
-
-    public void ControllerTest(){
-        assertTrue(true);
-    }
-
-    @org.junit.Test
+    @Test
     public void testFunction(){
+        // given
         Controller controller = new Controller();
-        Assert.assertNotNull(controller);
-        Assert.assertEquals(5+10, controller.add(5,10));
+
+        // when
+
+        // then
+        assertThat(controller).isNotNull();
+        assertThat(15).isEqualTo(controller.add(5, 10));
     }
 }

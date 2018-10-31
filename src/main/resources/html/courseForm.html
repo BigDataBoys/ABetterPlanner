@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>My Better Planner</title>
+		<script src="course_option_displayer.js"></script>
+	</head>
+	<!--
+		To do
+			Collect data from this form
+			Send that data to the database or server
+			Communicate with backend to provide the next page after this has been filled out
+	-->
+	<body>
+		<form action="" target="_self">
+		
+			<!--This first fieldset of the form might not be needed if we choose to not collect this information -->
+			<fieldset>
+				<legend>Personal Information:</legend>
+				<label for="firstname">First name:</label><br/>
+				<input id="firstname" type="text" name="firstname"/><br/>
+				<label for="lastname">Last name:</label><br/>
+				<input id="lastname" type="text" name="lastname"/><br/>
+				<label for="middleinitial">Middle initial:</label><br/>
+				<input id="middleinitial" type="text" name="middleinitial"/><br/>
+			</fieldset>
+			
+			<fieldset>
+				<legend>Select your major:</legend>
+				
+				<!--Once an option on the dropdown list is selected, a script function is called which adds content to the next fieldset element-->
+				<select id="major_selector" name="major" onchange="getCourses()">
+					<option disabled selected value> -- select an option -- </option>
+					<option value="computer_science">Computer Science</option>
+					<option value="computer_engineering">Computer Engineering</option>
+					<option value="mechanical_engineering">Mechanical Engineering</option>
+				</select>
+			</fieldset>
+			
+			<!--This element's content is changed depending on what major is selected -->
+			<fieldset id="major_courses">
+				<legend>Please select your major first</legend>
+			</fieldset>
+			
+			<div id="checked_courses">
+			</div>
+			
+			<input type="reset"/>
+			<input type="submit" name="Submit"/>
+		</form>
+	</body>
+</html>

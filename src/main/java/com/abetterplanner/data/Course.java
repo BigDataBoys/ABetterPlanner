@@ -1,4 +1,5 @@
-package com.abetterplanner.controller;
+package com.abetterplanner.data;
+
 import java.util.ArrayList;
 
 public class Course {
@@ -30,7 +31,15 @@ public class Course {
 		prereqs.add(C);
 	}
 
+	public void addPrereq(ArrayList<Course> course){
+		prereqs.addAll(course);
+	}
+
 	public boolean isCompleted() {
 		return completed;
+	}
+
+	public void setCompleted(boolean completed){
+		this.completed = completed;
 	}
 }

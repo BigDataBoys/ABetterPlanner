@@ -1,4 +1,4 @@
-package com.abetterplanner.backend;
+package com.abetterplanner.data;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

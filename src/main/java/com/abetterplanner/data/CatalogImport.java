@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class CatalogImport {
     public ArrayList<String> connectToClassSearch(String website) throws IOException {
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<String> list = new ArrayList<>();
         Document document = Jsoup.connect(website).get();
         Elements element = document.select("#mp-itn b a");
 

@@ -1,13 +1,14 @@
-package com.abetterplanner.backend;
+package com.abetterplanner.data;
 
 import static org.assertj.core.api.Assertions.*;
 import org.assertj.core.api.SoftAssertions;
+import com.abetterplanner.data.CatalogImport;
 
 import org.junit.Test;
 
 import java.io.IOException;
 
-public class CatalogImport {
+public class CatalogImportTest {
 
     @Test
     public void getFileExists(){

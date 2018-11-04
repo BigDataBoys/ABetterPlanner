@@ -1,45 +1,72 @@
 package com.abetterplanner.data;
 
+import com.abetterplanner.data.provider.CourseInterface;
+
 import java.util.ArrayList;
 
-public class Course {
+public class Course implements CourseInterface<Course> {
 	private String name;
-	private ArrayList<Course> prereqs = new ArrayList<Course>();
 	private String description;
-	private boolean completed = false;
+	private boolean completed;
+	private ArrayList<Course> prerequisites;
 
-	public Course(String n, String d) {
-		name = n;
-		description = d;
+	public Course(String name, String description){
+		this(name, description, false);
 	}
 
-	/**
-	 * @return the name
-	 */
+	public Course(String name, String description, boolean completed){
+		this(name, description, completed, new ArrayList<>());
+	}
+
+	public Course(String name, String description, boolean completed, ArrayList<Course> prerequisites) {
+		this.name = name;
+		this.description = description;
+		this.completed = completed;
+		this.prerequisites.addAll(prerequisites);
+	}
+
+	@Override
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * @return the description
-	 */
+	@Override
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
 	public String getDescription() {
 		return description;
 	}
 
-	public void addPrereq(Course C) {
-		prereqs.add(C);
+	@Override
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public void addPrereq(ArrayList<Course> course){
-		prereqs.addAll(course);
-	}
-
+	@Override
 	public boolean isCompleted() {
 		return completed;
 	}
 
-	public void setCompleted(boolean completed){
+	@Override
+	public void setCompleted(boolean completed) {
 		this.completed = completed;
+	}
+
+	@Override
+	public ArrayList<Course> getPrerequisites() {
+		return prerequisites;
+	}
+
+	@Override
+	public void setPrerequisites(ArrayList<Course> prerequisites) {
+		this.prerequisites.addAll(prerequisites);
+	}
+
+	@Override
+	public void setPrerequisite(Course course){
+		this.prerequisites.add(course);
 	}
 }

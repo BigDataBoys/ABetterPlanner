@@ -1,5 +1,8 @@
 package com.abetterplanner;
 
+import com.abetterplanner.data.Course;
+
+import com.abetterplanner.data.provider.CourseInterface;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -17,23 +20,13 @@ public class App {
      * will be used in this project, where the Autowired
      * annotation is applied.
      */
-    @Bean
-    public UserManager userManager() {
-        UserManager userManager = new FSUserManager();
-        return userManager;
-    }
 
+    /*
     @Bean
-    public GpsProvider gpsProvider() {
-        GpsProvider gpsProvider = new WalmartGpsProvider();
-        return gpsProvider;
+    public Course courseManager() {
+        CourseInterface<Course> course = new Course();
     }
-
-    @Bean
-    public FireSafetyProvider fireSafetyProvider() {
-        FireSafetyProvider fire = new WalmartFireSafetyProvider();
-        return fire;
-    }
+    */
 
 
     /**

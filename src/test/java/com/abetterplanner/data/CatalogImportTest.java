@@ -7,6 +7,7 @@ import com.abetterplanner.data.CatalogImport;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.io.File;
 
 public class CatalogImportTest {
 
@@ -20,14 +21,18 @@ public class CatalogImportTest {
     }
 
     @Test
-    public void connectToCalPoly() throws IOException {
+    public void parseHTMLTest() throws IOException {
         // given
         CatalogImport cImport = new CatalogImport();
         SoftAssertions softly = new SoftAssertions();
         // when
-        String website = "http://schedule.cpp.edu";
+        File folder = new File("src/main/resources/courses/spring2019");
+        File[] array = folder.listFiles();
+
+        softly.assertThat(folder).isNotNull();
+        softly.assertThat(array.length).isNotEqualTo(0);
         //then
-        softly.assertThat(cImport.connectToClassSearch(website)).isNotNull();
+        cImport.parseHTMLFile();
     }
 
 }

@@ -10,20 +10,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-@RestController
+//@RestController
 public class Controller {
 
     int add(int x, int y){
         return x+y;
     }
 
-    /**
-     * This is a simple example of how the HTTP API works.
-     * It returns a String "OK" in the HTTP response.
-     * To try it, run the web application locally,
-     * in your web browser, type the link:
-     * 	http://localhost:8080/cs480/ping
-     */
     @RequestMapping(value = "/ping", method = RequestMethod.GET)
     String healthCheck() {
         return "ping";

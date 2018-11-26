@@ -28,6 +28,21 @@ public class CourseController{
         return repository.findBy_id(id);
     }
 
+    @RequestMapping(value = "/instructor/{id}", method = RequestMethod.GET)
+    public List<Course> getCourseByInstructor (@PathVariable("id") String instructor) {
+        return repository.findByInstructor(instructor);
+    }
+
+    @RequestMapping(value = "/course_number/{id}", method = RequestMethod.GET)
+    public List<Course> getCourseByCourseNumber (@PathVariable("id") String courseNumber) {
+        return repository.findByCourseNumber(courseNumber);
+    }
+
+    @RequestMapping(value = "/class_number/{id}", method = RequestMethod.GET)
+    public List<Course> getCourseByClassNumber (@PathVariable("id") String classNumber) {
+        return repository.findByClassNumber(classNumber);
+    }
+
     /* Don't need people deleting stuff.
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public void modifyCourseById(@PathVariable("id") ObjectId id, @Valid @RequestBody Course course) {

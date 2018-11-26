@@ -36,7 +36,7 @@ public class CatalogImport {
                 instructor.add(courseCatalog.getElementsByAttributeValue("id", "ctl00_ContentPlaceHolder1_Repeater1_ctl" + formattedTableID + "_TableCell4").get(0));
                 classNumber.add(courseCatalog.getElementsByAttributeValue("id", "ctl00_ContentPlaceHolder1_Repeater1_ctl" + formattedTableID + "_TableCell13").get(0));
             }
-            addToDatabase(mergeToMap(courseNumber, classNumber, buildingRoom, time, instructor));
+            addToDatabase(courseNumber, classNumber, buildingRoom, time, instructor);
         }
     }
 
@@ -44,6 +44,39 @@ public class CatalogImport {
         return Jsoup.parse(file, "UTF-8");
     }
 
+    //    private void addToDatabase(HashMap<String, HashMap<String, CourseObject>> courses) throws UnknownHostException {
+    private void addToDatabase(ArrayList<Element> courseNumber, ArrayList<Element> classNumber, ArrayList<Element> buildingRoom, ArrayList<Element> time, ArrayList<Element> instructor) throws UnknownHostException {
+
+        MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://35.164.130.235:27017"));
+        MongoDatabase courseDatabase = mongoClient.getDatabase("prod");
+        MongoCollection<org.bson.Document> courseCollection = courseDatabase.getCollection("course");
+
+
+
+        for (int i = 0; i < courseNumber.size(); i++) {
+            org.bson.Document coursesDocument = new org.bson.Document();
+            coursesDocument.append("course_number", courseNumber.get(i).text())
+                    .append("class_number",classNumber.get(i).text())
+                    .append("building",buildingRoom.get(i).text())
+                    .append("time",time.get(i).text())
+                    .append("instructor",instructor.get(i).text());
+            courseCollection.insertOne(coursesDocument);
+        }
+
+        /*
+        for (Map.Entry<String, HashMap<String, CourseObject>> entry : courses.entrySet()) {
+            org.bson.Document courseNumberDocument = new org.bson.Document();
+            for (Map.Entry<String, CourseObject> course : entry.getValue().entrySet()) {
+                org.bson.Document courseDocument = new org.bson.Document().append("building", course.getValue().building).append("time", course.getValue().time).append("instructor", course.getValue().instructor);
+                courseNumberDocument.append(course.getKey(), courseDocument);
+            }
+            coursesDocument.append(entry.getKey(), courseNumberDocument);
+        }
+        */
+        //courseCollection.insertOne(coursesDocument);
+    }
+
+    /*
     private HashMap<String, HashMap<String, CourseObject>> mergeToMap(ArrayList<Element> courseNumber, ArrayList<Element> classNumber, ArrayList<Element> buildingRoom, ArrayList<Element> time, ArrayList<Element> instructor) {
 
         HashMap<String, HashMap<String, CourseObject>> courseMap = new HashMap<>();
@@ -67,46 +100,13 @@ public class CatalogImport {
 
         return courseMap;
     }
-
-    /**
-     * Sample Response
-     * cs_courses = {
-     * "CS 1280": {
-     * "31639": {
-     * "building":"3 2632",
-     * "time":"7:00 PM–8:15 PM TuTh",
-     * "instructor":"Johannsen,David L"
-     * }
-     * "31640": {
-     * "building":"3 2632",
-     * "time":"2:30 PM–3:45 PM MW",
-     * "instructor":"Nguyen,Thanh V"
-     * }
-     * }
-     * }
-     */
-    private void addToDatabase(HashMap<String, HashMap<String, CourseObject>> courses) throws UnknownHostException {
-
-        MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://10.0.128.177:27017"));
-        MongoDatabase courseDatabase = mongoClient.getDatabase("dev");
-        MongoCollection<org.bson.Document> courseCollection = courseDatabase.getCollection("course");
-
-        org.bson.Document coursesDocument = new org.bson.Document();
-
-        for (Map.Entry<String, HashMap<String, CourseObject>> entry : courses.entrySet()) {
-            org.bson.Document courseNumberDocument = new org.bson.Document();
-            for (Map.Entry<String, CourseObject> course : entry.getValue().entrySet()) {
-                org.bson.Document courseDocument = new org.bson.Document().append("building", course.getValue().building).append("time", course.getValue().time).append("instructor", course.getValue().instructor);
-                courseNumberDocument.append(course.getKey(), courseDocument);
-            }
-            coursesDocument.append(entry.getKey(), courseNumberDocument);
-        }
-        courseCollection.insertOne(coursesDocument);
-    }
+    */
 
     class CourseObject {
         String building;
         String time;
         String instructor;
     }
+
+
 }

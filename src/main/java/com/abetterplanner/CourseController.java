@@ -24,18 +24,19 @@ public class CourseController{
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Course getPetById(@PathVariable("id") ObjectId id) {
+    public Course getCourseById(@PathVariable("id") ObjectId id) {
         return repository.findBy_id(id);
     }
 
+    /* Don't need people deleting stuff.
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public void modifyPetById(@PathVariable("id") ObjectId id, @Valid @RequestBody Course course) {
+    public void modifyCourseById(@PathVariable("id") ObjectId id, @Valid @RequestBody Course course) {
         course.set_id(id);
         repository.save(course);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public Course createPet(@Valid @RequestBody Course course) {
+    public Course createCourse(@Valid @RequestBody Course course) {
         course.set_id(ObjectId.get());
         repository.save(course);
         return course;
@@ -45,4 +46,5 @@ public class CourseController{
     public void deleteCourse(@PathVariable ObjectId id) {
         repository.delete(repository.findBy_id(id));
     }
+    */
 }

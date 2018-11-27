@@ -11,6 +11,7 @@ import java.io.File;
 
 public class CatalogImportTest {
 
+    /*
     @Test
     public void getFileExists(){
         // given
@@ -19,6 +20,7 @@ public class CatalogImportTest {
         // then
         assertThat(cImport).isNotNull();
     }
+
 
     @Test
     public void parseHTMLTest() throws IOException {
@@ -34,5 +36,6 @@ public class CatalogImportTest {
         //then
         cImport.parseHTMLFile();
     }
+    */
 
 }

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { render } from "react-dom";
-import axios from 'axios';
+// import axios from 'axios';
 
 import Input from '../components/Input';
 import Select from '../components/Select';
@@ -35,6 +35,7 @@ class Login extends Component {
     }), () => console.log(this.state.user))
   }
 
+/*
   handleClick(e){
     var apiBaseUrl = "http://localhost:4000/api/";
     var self = this;
@@ -60,6 +61,7 @@ class Login extends Component {
       console.log(error);
     });
   }
+  */
 
   handleRegister(e) {
 
